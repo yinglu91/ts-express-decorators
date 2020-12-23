@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth1-depl
+  namespace: dev-04
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth1
+  template:
+    metadata:
+      labels:
+        app: auth1
+    spec:
+      containers:
+        - name: auth1
+          image: yinglu91/ts-auth1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth1-srv
+  namespace: dev-04
+spec:
+  selector:
+    app: auth1
+  ports:
+    - name: auth1
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+# deployment/kube-deployment.yaml

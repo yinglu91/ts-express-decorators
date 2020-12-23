@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+metadata:
+  name: auth1
+build:
+  artifacts:
+    - image: yinglu91/ts-auth1
+      context: ./
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+      - deployment/kube-deployment.yaml
+      - deployment/ingress-service.yaml
+# skaffold dev
+
+# https://ticketing.dev/auth/login     thisisunsafe
